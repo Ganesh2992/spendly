@@ -667,6 +667,103 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ------------------------------------------------------------------ */
+/* Modal                                                               */
+/* ------------------------------------------------------------------ */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.modal[hidden] { display: none; }
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 10, 9, 0.78);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    cursor: pointer;
+    animation: modal-fade-in 0.2s ease-out;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    background: #0f1311;
+    border: 1px solid #232927;
+    border-radius: var(--radius-md);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    animation: modal-pop-in 0.22s ease-out;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.85rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f7f6f3;
+    border: none;
+    border-radius: 999px;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.2s;
+}
+
+.modal-close:hover { background: rgba(0, 0, 0, 0.8); }
+.modal-close:focus-visible { outline: 2px solid #5fb48a; outline-offset: 2px; }
+
+.modal-video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    background: #000;
+}
+
+.modal-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+button.btn-ghost {
+    font-family: var(--font-body);
+    cursor: pointer;
+}
+
+@keyframes modal-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes modal-pop-in {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 600px) {
+    .modal { padding: 1rem; }
+    .modal-close { top: 0.4rem; right: 0.5rem; }
+}
+
+/* ------------------------------------------------------------------ */
 /* Responsive                                                          */
 /* ------------------------------------------------------------------ */
 

@@ -13,6 +13,7 @@
         <div class="hero-actions">
             <a href="{{ url_for('register') }}" class="btn-primary">Get started</a>
             <a href="{{ url_for('login') }}" class="btn-ghost">Sign in</a>
+            <button type="button" class="btn-ghost" data-modal-open="demo-video">See how it works</button>
         </div>
     </div>
     <div class="hero-visual">
@@ -79,5 +80,19 @@
         <a href="{{ url_for('register') }}" class="btn-primary">Create free account</a>
     </div>
 </section>
+
+<div class="modal" id="demo-video" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="See how Spendly works">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-content">
+        <button type="button" class="modal-close" data-modal-close aria-label="Close video">&times;</button>
+        <div class="modal-video">
+            <iframe
+                data-modal-video
+                title="Spendly demo video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
