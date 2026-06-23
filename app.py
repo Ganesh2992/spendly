@@ -1,6 +1,14 @@
 from flask import Flask, render_template
 
+from database.db import get_db, init_db, seed_db
+
 app = Flask(__name__)
+
+# Initialize and seed the database on startup. Idempotent — safe to run
+# on every boot (CREATE TABLE IF NOT EXISTS + seed_db's COUNT(*) guard).
+with app.app_context():
+    init_db()
+    seed_db()
 
 
 # ------------------------------------------------------------------ #
