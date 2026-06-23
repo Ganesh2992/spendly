@@ -71,3 +71,6 @@ Requirements:
 - No page libraries or dependencies — vanilla JS only, since we
   are not
   using any JS framework in this project
+
+  Do not modify any other part of your page.
+  git commit -m "landing: add youtube modal on see how it works click"
