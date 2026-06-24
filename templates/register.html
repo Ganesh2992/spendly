@@ -13,21 +13,27 @@
         </div>
 
         <div class="auth-card">
-            {% if error %}
-            <div class="auth-error">{{ error }}</div>
-            {% endif %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="auth-message auth-message-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
 
             <form method="POST" action="/register">
                 <div class="form-group">
                     <label for="name">Full name</label>
                     <input type="text" id="name" name="name"
                            class="form-input" placeholder="Nitish Kumar"
+                           value="{{ name or '' }}"
                            required autofocus>
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="email" id="email" name="email"
                            class="form-input" placeholder="nitish@example.com"
+                           value="{{ email or '' }}"
                            required>
                 </div>
                 <div class="form-group">
