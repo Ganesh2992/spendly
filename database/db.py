@@ -97,3 +97,4 @@ def seed_db():
         raise
     finally:
         conn.close()
+
