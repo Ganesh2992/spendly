@@ -777,6 +777,312 @@ button.btn-ghost {
 }
 
 /* ------------------------------------------------------------------ */
+/* Navbar greeting (logged-in state)                                  */
+/* ------------------------------------------------------------------ */
+
+.nav-greeting {
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ------------------------------------------------------------------ */
+/* Profile page                                                        */
+/* ------------------------------------------------------------------ */
+
+.profile-section {
+    padding: 4rem 2rem 5rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.profile-section-title {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+/* --- 1. User info card --- */
+
+.user-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem 2rem;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+}
+
+.user-info { display: flex; flex-direction: column; gap: 0.15rem; }
+
+.user-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 0;
+}
+
+.user-email {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0;
+}
+
+.user-meta {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin: 0.25rem 0 0;
+}
+
+/* --- 2. Summary stats row --- */
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.stat-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+}
+
+.stat-sub {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+}
+
+/* --- 3. Transaction history table --- */
+
+.txn-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    background: var(--paper-card);
+}
+
+.txn-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+.txn-table th,
+.txn-table td {
+    padding: 0.85rem 1.1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.txn-table thead th {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--border);
+}
+
+.txn-table tbody tr:last-child td { border-bottom: 0; }
+
+.txn-date {
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    width: 8.5rem;
+}
+
+.txn-desc { color: var(--ink-soft); }
+
+.txn-amount-col,
+.txn-amount {
+    text-align: right;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--ink);
+    white-space: nowrap;
+}
+
+/* Category pill (used in the txn table) */
+
+.category-pill {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.18rem 0.65rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    background: var(--accent-light);
+    color: var(--accent);
+}
+
+.category-pill--food           { background: var(--accent-light);  color: var(--accent); }
+.category-pill--bills          { background: var(--accent-2-light); color: var(--accent-2); }
+.category-pill--shopping       { background: var(--accent-light);  color: var(--accent); }
+.category-pill--transport      { background: var(--accent-2-light); color: var(--accent-2); }
+.category-pill--health         { background: var(--accent-light);  color: var(--accent); }
+.category-pill--entertainment  { background: var(--accent-2-light); color: var(--accent-2); }
+.category-pill--other          { background: var(--accent-light);  color: var(--accent); }
+
+/* --- 4. Category breakdown --- */
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: var(--paper-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.category-row {
+    display: grid;
+    grid-template-columns: 12rem 7rem 1fr 3.5rem;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 0.92rem;
+}
+
+.category-row:last-child { border-bottom: 0; }
+
+.category-name {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--ink);
+    font-weight: 500;
+}
+
+.category-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    background: var(--ink-faint);
+}
+
+.category-dot--food           { background: var(--accent); }
+.category-dot--bills          { background: var(--accent-2); }
+.category-dot--shopping       { background: var(--accent); }
+.category-dot--transport      { background: var(--accent-2); }
+.category-dot--health         { background: var(--accent); }
+.category-dot--entertainment  { background: var(--accent-2); }
+.category-dot--other          { background: var(--ink-faint); }
+
+.category-total {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--ink);
+    text-align: right;
+}
+
+.category-bar {
+    display: block;
+    height: 8px;
+    background: var(--paper-warm);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.category-bar-fill {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+}
+
+.category-bar-fill--food           { background: var(--accent); }
+.category-bar-fill--bills          { background: var(--accent-2); }
+.category-bar-fill--shopping       { background: var(--accent); }
+.category-bar-fill--transport      { background: var(--accent-2); }
+.category-bar-fill--health         { background: var(--accent); }
+.category-bar-fill--entertainment  { background: var(--accent-2); }
+.category-bar-fill--other          { background: var(--ink-faint); }
+
+/* Bar widths — driven by class name from the template (no inline styles). */
+.category-bar-fill--pct-7  { width: 7%;  }
+.category-bar-fill--pct-10 { width: 10%; }
+.category-bar-fill--pct-12 { width: 12%; }
+.category-bar-fill--pct-17 { width: 17%; }
+.category-bar-fill--pct-22 { width: 22%; }
+.category-bar-fill--pct-24 { width: 24%; }
+
+.category-pct {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+}
+
+/* --- Profile responsive --- */
+
+@media (max-width: 800px) {
+    .user-card { padding: 1.25rem 1.5rem; gap: 1rem; }
+    .avatar { width: 52px; height: 52px; font-size: 1.15rem; }
+
+    .stat-grid { grid-template-columns: 1fr; }
+
+    .category-row {
+        grid-template-columns: 1fr 5rem;
+        grid-template-areas:
+            "name total"
+            "bar  pct";
+        row-gap: 0.5rem;
+    }
+    .category-name  { grid-area: name; }
+    .category-total { grid-area: total; }
+    .category-bar   { grid-area: bar; }
+    .category-pct   { grid-area: pct; align-self: center; }
+}
+
+/* ------------------------------------------------------------------ */
 /* Responsive                                                          */
 /* ------------------------------------------------------------------ */
 
