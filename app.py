@@ -1,8 +1,8 @@
 import re
 import sqlite3
 
-from flask import Flask, flash, redirect, render_template, request, url_for
-from werkzeug.security import generate_password_hash
+from flask import Flask, flash, redirect, render_template, request, session, url_for
+from werkzeug.security import check_password_hash, generate_password_hash
 
 from database.db import get_db, init_db, seed_db
 
@@ -74,8 +74,40 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
+    if session.get("user_id"):
+        return redirect(url_for("profile"))
+
+    if request.method == "POST":
+        email = request.form.get("email", "").strip().lower()
+        password = request.form.get("password", "")
+        # Preserve the user's input (not the lowercased form) in the re-render
+        # so the field reflects what they actually typed.
+        email_display = request.form.get("email", "").strip()
+
+        if not email or not password:
+            flash("Please enter both email and password.", "error")
+            return render_template("login.html", email=email_display)
+
+        conn = get_db()
+        try:
+            user = conn.execute(
+                "SELECT id, password_hash FROM users WHERE email = ?",
+                (email,),
+            ).fetchone()
+        finally:
+            conn.close()
+
+        if not user or not check_password_hash(user["password_hash"], password):
+            # Single vague error — don't leak whether the email exists.
+            flash("Invalid email or password", "error")
+            return render_template("login.html", email=email_display)
+
+        session["user_id"] = user["id"]
+        flash("Signed in successfully.", "success")
+        return redirect(url_for("profile"))
+
     return render_template("login.html")
 
 
@@ -95,7 +127,9 @@ def privacy():
 
 @app.route("/logout")
 def logout():
-    return "Logout — coming in Step 3"
+    session.clear()
+    flash("Signed out successfully.", "success")
+    return redirect(url_for("landing"))
 
 
 @app.route("/profile")
