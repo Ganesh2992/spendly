@@ -2,6 +2,10 @@
 import random
 import sys
 from datetime import date, timedelta
+from pathlib import Path
+
+# Make `database` importable when run from project root
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from database.db import get_db
 
